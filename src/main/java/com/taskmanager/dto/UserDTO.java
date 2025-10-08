@@ -10,11 +10,11 @@ public class UserDTO {
 
     public UserDTO() {}
 
-    public UserDTO(AvailabilityStatus availabilityStatus, String email, String username, Long id) {
-        this.availabilityStatus = availabilityStatus;
-        this.email = email;
-        this.username = username;
+    public UserDTO(Long id, String username, String email, AvailabilityStatus availabilityStatus) {
         this.id = id;
+        this.username = username;
+        this.email = email;
+        this.availabilityStatus = availabilityStatus;
     }
 
     public Long getId() {
