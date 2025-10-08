@@ -1,5 +1,6 @@
 package com.taskmanager.entity;
 
+import com.taskmanager.enums.AvailabilityStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,10 +31,6 @@ public class User {
 
     @OneToMany(mappedBy = "assignedUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
-
-    public enum AvailabilityStatus {
-        AVAILABLE, BUSY, OFFLINE
-    }
 
     // Constructors
     public User() {}
