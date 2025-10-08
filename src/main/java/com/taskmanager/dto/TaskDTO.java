@@ -1,39 +1,29 @@
-package com.taskmanager.entity;
+package com.taskmanager.dto;
 
 import com.taskmanager.enums.PriorityLevel;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tasks")
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TaskDTO {
     private Long id;
-
-    @NotBlank
     private String title;
-
     private String description;
-
-    @Enumerated(EnumType.STRING)
     private PriorityLevel priorityLevel;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assigned_user_id")
-    private User assignedUser;
-
     private LocalDateTime creationTimestamp;
-    
-    public Task() {}
+    private Long assignedUserId;
+    private String assignedUserName;
 
-    public Task(String title, String description, PriorityLevel priorityLevel, User assignedUser) {
+    public TaskDTO() {
+    }
+
+    public TaskDTO(Long id, String title, String description, PriorityLevel priorityLevel, LocalDateTime creationTimestamp, Long assignedUserId, String assignedUserName) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.priorityLevel = priorityLevel;
-        this.assignedUser = assignedUser;
-        this.creationTimestamp = LocalDateTime.now();
+        this.creationTimestamp = creationTimestamp;
+        this.assignedUserId = assignedUserId;
+        this.assignedUserName = assignedUserName;
     }
 
     public Long getId() {
@@ -68,19 +58,27 @@ public class Task {
         this.priorityLevel = priorityLevel;
     }
 
-    public User getAssignedUser() {
-        return assignedUser;
-    }
-
-    public void setAssignedUser(User assignedUser) {
-        this.assignedUser = assignedUser;
-    }
-
     public LocalDateTime getCreationTimestamp() {
         return creationTimestamp;
     }
 
     public void setCreationTimestamp(LocalDateTime creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
+    }
+
+    public Long getAssignedUserId() {
+        return assignedUserId;
+    }
+
+    public void setAssignedUserId(Long assignedUserId) {
+        this.assignedUserId = assignedUserId;
+    }
+
+    public String getAssignedUserName() {
+        return assignedUserName;
+    }
+
+    public void setAssignedUserName(String assignedUserName) {
+        this.assignedUserName = assignedUserName;
     }
 }
