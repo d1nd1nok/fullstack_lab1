@@ -12,11 +12,12 @@ public class TaskDTO {
     private LocalDateTime creationTimestamp;
     private Long assignedUserId;
     private String assignedUserName;
+    private boolean done;
 
     public TaskDTO() {
     }
 
-    public TaskDTO(Long id, String title, String description, PriorityLevel priorityLevel, LocalDateTime creationTimestamp, Long assignedUserId, String assignedUserName) {
+    public TaskDTO(Long id, String title, String description, PriorityLevel priorityLevel, LocalDateTime creationTimestamp, Long assignedUserId, String assignedUserName, boolean done) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -24,6 +25,7 @@ public class TaskDTO {
         this.creationTimestamp = creationTimestamp;
         this.assignedUserId = assignedUserId;
         this.assignedUserName = assignedUserName;
+        this.done = done;
     }
 
     public Long getId() {
@@ -80,5 +82,13 @@ public class TaskDTO {
 
     public void setAssignedUserName(String assignedUserName) {
         this.assignedUserName = assignedUserName;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

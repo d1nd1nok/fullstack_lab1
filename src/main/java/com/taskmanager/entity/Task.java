@@ -26,6 +26,9 @@ public class Task {
 
     private LocalDateTime creationTimestamp;
     
+    // Indicates whether the task is completed
+    private boolean done = false;
+    
     public Task() {}
 
     public Task(String title, String description, PriorityLevel priorityLevel, User assignedUser) {
@@ -34,6 +37,7 @@ public class Task {
         this.priorityLevel = priorityLevel;
         this.assignedUser = assignedUser;
         this.creationTimestamp = LocalDateTime.now();
+        this.done = false;
     }
 
     public Long getId() {
@@ -82,5 +86,13 @@ public class Task {
 
     public void setCreationTimestamp(LocalDateTime creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

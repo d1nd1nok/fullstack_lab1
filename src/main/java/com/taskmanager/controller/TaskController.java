@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -43,6 +44,13 @@ public class TaskController {
         return ResponseEntity.ok(updatedTask);
     }
 
+    @PutMapping("/{id}/done")
+    public ResponseEntity<TaskDTO> updateTaskDone(@PathVariable Long id, @RequestBody Map<String, Boolean> request) {
+        boolean done = request.get("done");
+        TaskDTO updatedTask = taskService.updateTaskDone(id, done);
+        return ResponseEntity.ok(updatedTask);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
@@ -61,11 +69,6 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
-    @GetMapping("/high-priority")
-    public ResponseEntity<List<TaskDTO>> getHighPriorityTasks() {
-        List<TaskDTO> tasks = taskService.getHighPriorityTasks();
-        return ResponseEntity.ok(tasks);
-    }
 
     @PostMapping("/{taskId}/assign")
     public ResponseEntity<TaskDTO> assignTaskToAvailableUser(@PathVariable Long taskId) {

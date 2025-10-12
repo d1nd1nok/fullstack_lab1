@@ -19,4 +19,10 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     @Query("SELECT t FROM Task t WHERE t.assignedUser.id = :userId")
     List<Task> findByAssignedUserId(Long userId);
+
+    @Query("SELECT COUNT(t) FROM Task t WHERE t.assignedUser.id = :userId AND t.done = false")
+    long countActiveTasksByUserId(Long userId);
+
+    @Query("SELECT t FROM Task t WHERE t.assignedUser.id = :userId AND t.done = false")
+    List<Task> findActiveTasksByUserId(Long userId);
 }
